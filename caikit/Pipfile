@@ -3,8 +3,16 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
+[[source]]
+url = "https://download.pytorch.org/whl/nightly/cu117"
+verify_ssl = true
+name = "pytorch_nightly"
+
 [packages]
-caikit-nlp = {editable = true, ref = "dc43d07323b0d6c21b5b177bbde9b56d7f23c5ad", git = "https://github.com/opendatahub-io/caikit-nlp.git"}
+caikit-nlp = {editable = true, ref = "88fd6432366fa4e1b3d5dc086e70ad5d6899368b", git = "https://github.com/opendatahub-io/caikit-nlp.git"}
+torch = {version = "==2.1.0.dev20230531+cu117", index = "pytorch_nightly"}
+pytorch-triton = {version = "==2.1.0+9820899b38", index = "pytorch_nightly"}
+bitsandbytes = "0.38"
 
 [dev-packages]
 
