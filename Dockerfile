@@ -5,7 +5,10 @@ USER root
 WORKDIR /caikit
 COPY caikit /caikit
 
-RUN yum -y install git && yum clean all && \
+# git-lfs and grpcurl are used for smoke test, but feels like it'd be useful to have, maybe split to a second dockerfile for testing if not
+RUN yum -y install git git-lfs && yum clean all && \
+    git lfs install && \
+    curl -sL https://github.com/fullstorydev/grpcurl/releases/download/v1.8.7/grpcurl_1.8.7_linux_x86_64.tar.gz | tar zxvf - -C /bin grpcurl && \
     pip install pipenv && \
     pipenv install --system && \
     rm -rf ~/.cache && \
